@@ -55,8 +55,8 @@ Nesse projeto, você será capaz de:
   <summary><strong>🗓 Data de Entrega</strong></summary><br />
   
   * Este projeto é em grupo;
-  * São `X` dias de projeto;
-  * Data para entrega final do projeto: `DD/MM/YYYY - 14:00h`.
+  * Serão `4` dias de projeto;
+  * Data para entrega final do projeto: `28/02/2023 14:00`.
 
 </details>
 
@@ -67,9 +67,9 @@ Nesse projeto, você será capaz de:
 
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:tryber/sd-0x-project-trivia-react-redux.git`.
+  - Use o comando: `git clone git@github.com:tryber/sd-027-a-project-trivia-react-redux.git`.
   - Entre na pasta do repositório que você acabou de clonar:
-    - `cd sd-0x-project-trivia-react-redux`
+    - `cd sd-027-a-project-trivia-react-redux`
   - Vá para a branch do seu grupo:
     - `git checkout main-group-XX && git pull`, onde `XX` é o número do seu grupo. Exemplos: `main-group-1`, `main-group-22`.
 
@@ -109,7 +109,7 @@ Nesse projeto, você será capaz de:
 
   6. Crie um novo `Pull Request` _(PR)_
 
-  - Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-trivia-react-redux/pulls)
+  - Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-027-a-project-trivia-react-redux/pulls)
   - Clique no botão verde _"New pull request"_
   - Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
   - Coloque um título para a sua _Pull Request_
@@ -117,7 +117,7 @@ Nesse projeto, você será capaz de:
   - Clique no botão verde _"Create pull request"_
   - Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
   - **Não se preocupe em preencher mais nada por enquanto!**
-  - Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-project-trivia-react-redux/pulls) e confira que o seu _Pull Request_ está criado
+  - Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-027-a-project-trivia-react-redux/pulls) e confira que o seu _Pull Request_ está criado
 
   7. Assim que aprovado por pelo menos duas pessoas do seu grupo e o _Linter_ estiver adereçado, acesse **SEU** _Pull Request_ e clique no botão _"Merge pull request"_
 
@@ -150,7 +150,7 @@ Nesse projeto, você será capaz de:
 
     - No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
 
-    - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`.
+    - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-027-a`.
 
   Caso tenha alguma dúvida, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
