@@ -15,6 +15,7 @@ class Login extends Component {
     this.setState({ [name]: value }, this.handleValidated);
   };
 
+  // Faz o fetch do token, salva o nome e o email no estado global e redireciona para o game
   handleClick = async () => {
     await getToken();
     const { history, dispatch } = this.props;
