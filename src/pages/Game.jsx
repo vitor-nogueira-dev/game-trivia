@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Header from '../components/Header';
 
-class Game extends Component {
+export default class Game extends Component {
   render() {
     return (
-      <p>Hello Word!</p>
+      <div>
+        <Header />
+      </div>
     );
   }
 }
-
-export default Game;
