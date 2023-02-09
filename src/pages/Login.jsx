@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import validator from 'validator';
 
@@ -20,9 +20,9 @@ export default class Login extends Component {
   };
 
   redirect = () => {
-    const { history } = this.props
-    history.push('/settings')
-  }
+    const { history } = this.props;
+    history.push('/settings');
+  };
 
   render() {
     const { name, email, isDisabled } = this.state;
@@ -55,10 +55,10 @@ export default class Login extends Component {
         >
           Play
         </button>
-        <button 
-        type="button"
-        data-testid="btn-settings"
-        onClick={ this.redirect }
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.redirect }
         >
           Settings
         </button>
@@ -69,6 +69,6 @@ export default class Login extends Component {
 
 Login.propTypes = {
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
   }).isRequired,
-}
+};
