@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import validator from 'validator';
-import getToken from '../redux/actions';
+import { saveEmail, saveName, getToken } from '../redux/actions';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -16,7 +17,10 @@ export default class Login extends Component {
 
   handleClick = async () => {
     await getToken();
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { name, email } = this.state;
+    dispatch(saveEmail(email));
+    dispatch(saveName(name));
     history.push('/game');
   };
 
@@ -81,4 +85,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
+
+export default connect()(Login);
