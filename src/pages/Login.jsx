@@ -22,21 +22,23 @@ export default class Login extends Component {
     const { name, email, isDisabled } = this.state;
     return (
       <div>
-        <label htmlFor="email">
+        <label htmlFor="name">
+          Nome
           <input
             type="text"
             name="name"
-            id="email"
+            id="name"
             data-testid="input-player-name"
             onChange={ this.handleChange }
             value={ name }
           />
         </label>
-        <label htmlFor="name">
+        <label htmlFor="email">
+          Email
           <input
             type="email"
             name="email"
-            id="name"
+            id="email"
             data-testid="input-gravatar-email"
             onChange={ this.handleChange }
             value={ email }
