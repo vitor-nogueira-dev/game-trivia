@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import validator from 'validator';
 import PropTypes from 'prop-types';
-import getToken from '../redux/actions';
+import { getToken } from '../redux/actions';
 
 export default class Login extends Component {
   state = {
