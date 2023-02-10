@@ -8,7 +8,7 @@ import { getToken } from '../helpers/localStorage';
 import Header from '../components/Header';
 
 import Questions from '../components/Questions';
-import { saveQuestions, updateScore } from '../redux/actions';
+import { saveQuestions, updateScore, updateAssertions } from '../redux/actions';
 
 const TIMER_TIME = 30;
 
@@ -84,6 +84,7 @@ class Game extends Component {
     if (selectedAnswer === correctAnswer) {
       score += (timerCounter * pontos[difficulty]);
       dispatch(updateScore(score));
+      dispatch(updateAssertions());
     }
 
     this.setState({ clicked: true });

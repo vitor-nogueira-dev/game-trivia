@@ -19,12 +19,16 @@ class Feedback extends Component {
           )}
           <p>
             Você acertou
+            {' '}
             <span data-testid="feedback-total-question">{assertions}</span>
-            questões!
+            {' '}
+            {assertions > 1 ? 'questões!' : 'questão!'}
           </p>
           <p>
             Um total de
+            {' '}
             <span data-testid="feedback-total-score">{score}</span>
+            {' '}
             pontos.
           </p>
         </section>
