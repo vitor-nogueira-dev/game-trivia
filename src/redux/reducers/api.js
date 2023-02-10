@@ -1,9 +1,7 @@
 import { SAVE_QUESTIONS } from '../actions';
 
 const initialState = {
-  response: '',
   results: [],
-  index: 0,
 };
 
 const api = (state = initialState, { type, payload }) => {
@@ -12,8 +10,7 @@ const api = (state = initialState, { type, payload }) => {
 
     return {
       ...state,
-      response: payload.response_code,
-      results: payload.results,
+      results: payload,
     };
 
   default:

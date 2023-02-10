@@ -8,7 +8,7 @@ import { getToken } from '../helpers/localStorage';
 import Header from '../components/Header';
 
 import Questions from '../components/Questions';
-import { requestAPI } from '../redux/actions';
+import { saveQuestions } from '../redux/actions';
 
 class Game extends Component {
   state = {
@@ -18,18 +18,25 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { history, dispatch } = this.props;
+    const { dispatch, history } = this.props;
     const token = getToken();
-    console.log(token);
-    await dispatch(requestAPI(token));
-    const { results, response } = this.props;
-    const three = 3;
-    if (response === three) {
-      localStorage.removeItem('token');
-      history.push('/');
-      return;
+
+    try {
+      const response = await fetch(
+        `https://opentdb.com/api.php?amount=5&token=${token}`,
+      );
+      const { response_code: responseCode, results } = await response.json();
+      const three = 3;
+      if (responseCode === three) {
+        localStorage.removeItem('token');
+        history.push('/');
+        return;
+      }
+      this.setState({ results }, this.shuffleAnswers);
+      dispatch(saveQuestions(results));
+    } catch (error) {
+      console.warn(error);
     }
-    this.setState({ results }, this.shuffleAnswers);
   }
 
   shuffleAnswers = () => {
