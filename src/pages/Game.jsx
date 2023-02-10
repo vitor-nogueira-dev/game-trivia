@@ -66,7 +66,7 @@ class Game extends Component {
       this.setState(({ timerCounter, clicked }) => {
         if (timerCounter === 0 || clicked) {
           this.stopTimer();
-          return { isDisabled: true };
+          return { isDisabled: true, clicked: true };
         }
         return { timerCounter: timerCounter - 1 };
       });
@@ -102,11 +102,28 @@ class Game extends Component {
     this.setState({ answersShuffled });
   };
 
+  handleClickNext = () => {
+    const { questionIndex } = this.state;
+    const { history } = this.props;
+    const four = 4;
+    if (questionIndex === four) return history.push('/feedback');
+    this.setState({
+      questionIndex: questionIndex + 1,
+      clicked: false,
+      timerCounter: TIMER_TIME,
+      isDisabled: false,
+    }, () => {
+      this.shuffleAnswers();
+      this.startTimer();
+    });
+  };
+
   render() {
     const {
       questionIndex, answersShuffled, results,
       timerCounter, clicked, isDisabled,
     } = this.state;
+
     return (
       <div className="game">
         <Header />
@@ -117,6 +134,7 @@ class Game extends Component {
           clicked={ clicked }
           handleOptionClick={ this.handleOptionClick }
           isDisabled={ isDisabled }
+          handleClickNext={ this.handleClickNext }
         />
         <p>{ `Timer: ${timerCounter}s` }</p>
       </div>

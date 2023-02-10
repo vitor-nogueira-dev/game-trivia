@@ -5,6 +5,7 @@ import './Questions.css';
 
 class Questions extends Component {
   handleClassName = (selectedAnswer, correctAnswer) => {
+    console.log(selectedAnswer, 'select', correctAnswer, 'correct');
     if (selectedAnswer === correctAnswer) return 'correct';
     return 'wrong';
   };
@@ -13,10 +14,20 @@ class Questions extends Component {
     const {
       questionIndex, answersShuffled, results,
       clicked, handleOptionClick, isDisabled,
+      handleClickNext,
     } = this.props;
 
     if (results.length === 0 || answersShuffled.length === 0) return <p>Loading...</p>;
 
+    const buttonNext = (
+      <button
+        type="button"
+        onClick={ handleClickNext }
+        data-testid="btn-next"
+      >
+        Next
+      </button>
+    );
     return (
       <div>
         <div>
@@ -46,6 +57,7 @@ class Questions extends Component {
               </button>
             ))}
           </div>
+          {clicked && buttonNext}
         </div>
       </div>
     );
