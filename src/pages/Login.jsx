@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import validator from 'validator';
-import { saveEmail, saveName, { getToken } } from '../redux/actions';
+import { saveEmail, saveName, getToken } from '../redux/actions';
 
 class Login extends Component {
   state = {

@@ -40,6 +40,7 @@ class Game extends Component {
   render() {
     const { questionIndex } = this.state;
     const { results } = this.props;
+    console.log(results);
 
     if (results.length === 0) return <p>Loading...</p>;
 
@@ -83,4 +84,9 @@ Game.propTypes = {
   }),
 }.isRequired;
 
-export default connect()(Game);
+const mapStateToProps = ({ api }) => ({
+  response: api.response,
+  results: api.results,
+});
+
+export default connect(mapStateToProps)(Game);
