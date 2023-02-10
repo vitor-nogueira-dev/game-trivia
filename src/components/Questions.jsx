@@ -4,24 +4,17 @@ import { connect } from 'react-redux';
 import './Questions.css';
 
 class Questions extends Component {
-  state = {
-    clicou: false,
-  };
-
-  handleOptionClick = () => {
-    this.setState({
-      clicou: true,
-    });
-  };
-
   handleClassName = (selectedAnswer, correctAnswer) => {
     if (selectedAnswer === correctAnswer) return 'correct';
     return 'wrong';
   };
 
   render() {
-    const { questionIndex, answersShuffled, results } = this.props;
-    const { clicou } = this.state;
+    const {
+      questionIndex, answersShuffled, results,
+      clicked, handleOptionClick, isDisabled,
+    } = this.props;
+
     if (results.length === 0 || answersShuffled.length === 0) return <p>Loading...</p>;
 
     return (
@@ -34,16 +27,19 @@ class Questions extends Component {
               <button
                 key={ answer }
                 type="button"
+                disabled={ isDisabled }
                 data-testid={
                   answer === results[questionIndex].correct_answer
                     ? 'correct-answer'
                     : `wrong-answer-${index}`
                 }
-                className={ clicou
+                className={ clicked
                   ? this.handleClassName(answer, results[questionIndex].correct_answer)
                   : '' }
-                onClick={ () => this
-                  .handleOptionClick(answer, results[questionIndex].correct_answer) }
+                onClick={ () => handleOptionClick(
+                  answer,
+                  results[questionIndex].correct_answer,
+                ) }
               >
                 {answer}
               </button>
