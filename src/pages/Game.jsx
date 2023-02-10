@@ -52,7 +52,7 @@ class Game extends Component {
     const shuffled = this.shuffleArray([correctAnswer, ...incorrectAnswers]);
 
     return (
-      <div className="Game">
+      <div className="game">
         <h1 data-testid="question-category">{ category }</h1>
         <h3 data-testid="question-text">{ question }</h3>
         <div data-testid="answer-options">
