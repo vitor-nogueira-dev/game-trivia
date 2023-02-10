@@ -25,7 +25,7 @@ class Ranking extends Component {
     return (
       <div>
         <div>
-          { rankings.map((item) => {<p>{item}</p>})}
+          { rankings.map((item) => <div key={ item }>{item}</div>)}
         </div>
         {/* <div>
           <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${MD5(email).toString()}` } alt="" />
