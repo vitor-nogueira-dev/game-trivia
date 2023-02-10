@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import PlayAgain from '../components/PlayAgain';
 
 class Feedback extends Component {
   render() {
-    const { assertions, score } = this.props;
+    const { assertions, score, history } = this.props;
     const minAssertionsNumber = 3;
     return (
       <div className="feedback-page">
@@ -27,6 +28,9 @@ class Feedback extends Component {
             pontos.
           </p>
         </section>
+        <section className="feedback-buttons">
+          <PlayAgain history={ history } />
+        </section>
       </div>
     );
   }
@@ -35,6 +39,9 @@ class Feedback extends Component {
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const mapStateToProps = ({ player }) => ({
