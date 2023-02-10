@@ -27,15 +27,6 @@ class Ranking extends Component {
         <div>
           { rankings.map((item) => <div key={ item }>{item}</div>)}
         </div>
-        {/* <div>
-          <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${MD5(email).toString()}` } alt="" />
-          <p
-            data-testid="player-name-${index}"
-          >
-            {name}
-          </p>
-          <span>{score}</span>
-        </div> */}
         <button
           type="button"
           data-testid="btn-go-home"
