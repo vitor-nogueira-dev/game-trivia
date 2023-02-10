@@ -30,6 +30,13 @@ class Feedback extends Component {
         </section>
         <section className="feedback-buttons">
           <PlayAgain history={ history } />
+          <button
+            data-testid="btn-ranking"
+            type="button"
+            onClick={ () => history.push('/ranking') }
+          >
+            Ranking
+          </button>
         </section>
       </div>
     );
