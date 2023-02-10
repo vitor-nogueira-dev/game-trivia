@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { MD5 } from 'crypto-js';
 import { getRanking } from '../services/rankings';
 
 class Ranking extends Component {
@@ -43,9 +42,6 @@ Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  score: PropTypes.number.isRequired,
-  email: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ player }) => ({
