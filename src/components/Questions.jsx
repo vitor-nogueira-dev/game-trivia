@@ -39,6 +39,7 @@ class Questions extends Component {
                 onClick={ () => handleOptionClick(
                   answer,
                   results[questionIndex].correct_answer,
+                  results[questionIndex].difficulty,
                 ) }
               >
                 {answer}
