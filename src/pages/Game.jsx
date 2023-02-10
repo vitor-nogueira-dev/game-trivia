@@ -6,6 +6,7 @@ import { requestAPI } from '../redux/actions';
 // import { requestTokenAPI } from '../helpers/requestApi';
 // import { requestAPI } from '../redux/actions';
 import Header from '../components/Header';
+import Timer from '../components/Timer';
 
 class Game extends Component {
   state = {
@@ -40,7 +41,6 @@ class Game extends Component {
   render() {
     const { questionIndex } = this.state;
     const { results } = this.props;
-    console.log(results);
 
     if (results.length === 0) return <p>Loading...</p>;
 
@@ -73,6 +73,7 @@ class Game extends Component {
             </button>
           )) }
         </div>
+        <Timer monitoredState="" />
       </div>
     );
   }
