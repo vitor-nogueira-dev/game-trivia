@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import validator from 'validator';
 import PropTypes from 'prop-types';
-import { getToken } from '../redux/actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import validator from 'validator';
+import { saveEmail, saveName, { getToken } } from '../redux/actions';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -14,9 +15,13 @@ export default class Login extends Component {
     this.setState({ [name]: value }, this.handleValidated);
   };
 
+  // Faz o fetch do token, salva o nome e o email no estado global e redireciona para o game
   handleClick = async () => {
     await getToken();
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { name, email } = this.state;
+    dispatch(saveEmail(email));
+    dispatch(saveName(name));
     history.push('/game');
   };
 
@@ -26,25 +31,32 @@ export default class Login extends Component {
     this.setState({ isDisabled: !(isEmailValid && name) });
   };
 
+  redirect = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { name, email, isDisabled } = this.state;
     return (
       <div>
-        <label htmlFor="email">
+        <label htmlFor="name">
+          Nome
           <input
             type="text"
             name="name"
-            id="email"
+            id="name"
             data-testid="input-player-name"
             onChange={ this.handleChange }
             value={ name }
           />
         </label>
-        <label htmlFor="name">
+        <label htmlFor="email">
+          Email
           <input
             type="email"
             name="email"
-            id="name"
+            id="email"
             data-testid="input-gravatar-email"
             onChange={ this.handleChange }
             value={ email }
@@ -58,6 +70,13 @@ export default class Login extends Component {
         >
           Play
         </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.redirect }
+        >
+          Settings
+        </button>
       </div>
     );
   }
@@ -67,4 +86,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
+
+export default connect()(Login);

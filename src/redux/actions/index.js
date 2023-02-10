@@ -1,6 +1,9 @@
 export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_TOKEN_API = 'REQUEST_TOKEN_API';
 
+export const SAVE_EMAIL = 'SAVE_EMAIL';
+export const SAVE_NAME = 'SAVE_NAME';
+
 export const getToken = async () => {
   const response = await fetch('https://opentdb.com/api_token.php?command=request');
   const data = await response.json();
@@ -24,10 +27,12 @@ export const requestAPI = (token) => async (dispatch) => {
   }
 };
 
-// export const requestTokenAPI = () => async (dispatch) => {
-//   const response = await fetch(
-//     'https://opentdb.com/api_token.php?command=request',
-//   );
-//   const data = await response.json();
-//   dispatch(requestAPI(data.token));
-// };
+export const saveEmail = (email) => ({
+  type: SAVE_EMAIL,
+  payload: email,
+});
+
+export const saveName = (name) => ({
+  type: SAVE_NAME,
+  payload: name,
+});

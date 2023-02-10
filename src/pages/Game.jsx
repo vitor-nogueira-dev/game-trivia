@@ -5,6 +5,7 @@ import { getToken } from '../helpers/localStorage';
 import { requestAPI } from '../redux/actions';
 // import { requestTokenAPI } from '../helpers/requestApi';
 // import { requestAPI } from '../redux/actions';
+import Header from '../components/Header';
 
 class Game extends Component {
   state = {
@@ -53,6 +54,7 @@ class Game extends Component {
 
     return (
       <div className="game">
+        <Header />
         <h1 data-testid="question-category">{ category }</h1>
         <h3 data-testid="question-text">{ question }</h3>
         <div data-testid="answer-options">
@@ -76,12 +78,9 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  dispatch: PropTypes.func,
+  results: PropTypes.shape({
+    length: PropTypes.number,
+  }),
 }.isRequired;
 
-const mapStateToProps = ({ api }) => ({
-  response: api.response,
-  results: api.results,
-});
-
-export default connect(mapStateToProps)(Game);
+export default connect()(Game);
