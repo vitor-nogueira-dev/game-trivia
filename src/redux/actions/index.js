@@ -3,6 +3,8 @@ export const REQUEST_TOKEN_API = 'REQUEST_TOKEN_API';
 
 export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const SAVE_NAME = 'SAVE_NAME';
+export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const UPDATE_ASSERTIONS = 'UPDATE_ASSERTIONS';
 
 export const getToken = async () => {
   const response = await fetch('https://opentdb.com/api_token.php?command=request');
@@ -35,4 +37,13 @@ export const saveEmail = (email) => ({
 export const saveName = (name) => ({
   type: SAVE_NAME,
   payload: name,
+});
+
+export const updateScore = (payload) => ({
+  type: UPDATE_SCORE,
+  payload,
+});
+
+export const updateAssertions = () => ({
+  type: UPDATE_ASSERTIONS,
 });

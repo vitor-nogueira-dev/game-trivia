@@ -8,7 +8,7 @@ import { getToken } from '../helpers/localStorage';
 import Header from '../components/Header';
 
 import Questions from '../components/Questions';
-import { saveQuestions } from '../redux/actions';
+import { saveQuestions, updateScore, updateAssertions } from '../redux/actions';
 
 const TIMER_TIME = 30;
 
@@ -66,7 +66,7 @@ class Game extends Component {
       this.setState(({ timerCounter, clicked }) => {
         if (timerCounter === 0 || clicked) {
           this.stopTimer();
-          return { isDisabled: true };
+          return { isDisabled: true, clicked: true };
         }
         return { timerCounter: timerCounter - 1 };
       });
@@ -75,7 +75,18 @@ class Game extends Component {
     }, aSecondInMiliseconds);
   };
 
-  handleOptionClick = () => {
+  handleOptionClick = (selectedAnswer, correctAnswer, difficulty) => {
+    const { timerCounter } = this.state;
+    const { dispatch } = this.props;
+    const ten = 10;
+    let score = ten;
+    const pontos = { hard: 3, medium: 2, easy: 1 };
+    if (selectedAnswer === correctAnswer) {
+      score += (timerCounter * pontos[difficulty]);
+      dispatch(updateScore(score));
+      dispatch(updateAssertions());
+    }
+
     this.setState({ clicked: true });
   };
 
@@ -92,11 +103,28 @@ class Game extends Component {
     this.setState({ answersShuffled });
   };
 
+  handleClickNext = () => {
+    const { questionIndex } = this.state;
+    const { history } = this.props;
+    const four = 4;
+    if (questionIndex === four) return history.push('/feedback');
+    this.setState({
+      questionIndex: questionIndex + 1,
+      clicked: false,
+      timerCounter: TIMER_TIME,
+      isDisabled: false,
+    }, () => {
+      this.shuffleAnswers();
+      this.startTimer();
+    });
+  };
+
   render() {
     const {
       questionIndex, answersShuffled, results,
       timerCounter, clicked, isDisabled,
     } = this.state;
+
     return (
       <div className="game">
         <Header />
@@ -107,6 +135,7 @@ class Game extends Component {
           clicked={ clicked }
           handleOptionClick={ this.handleOptionClick }
           isDisabled={ isDisabled }
+          handleClickNext={ this.handleClickNext }
         />
         <p>{ `Timer: ${timerCounter}s` }</p>
       </div>
