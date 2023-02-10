@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -25,6 +26,7 @@ class Ranking extends Component {
     return (
       <div>
         <div>
+          <h1 data-testid="ranking-title">Ranking</h1>
           { rankings.map((item) => <div key={ item }>{item}</div>)}
         </div>
         <button
