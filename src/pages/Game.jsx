@@ -8,7 +8,7 @@ import { getToken } from '../helpers/localStorage';
 import Header from '../components/Header';
 
 import Questions from '../components/Questions';
-import { saveQuestions } from '../redux/actions';
+import { saveQuestions, updateScore } from '../redux/actions';
 
 const TIMER_TIME = 30;
 
@@ -75,7 +75,17 @@ class Game extends Component {
     }, aSecondInMiliseconds);
   };
 
-  handleOptionClick = () => {
+  handleOptionClick = (selectedAnswer, correctAnswer, difficulty) => {
+    const { timerCounter } = this.state;
+    const { dispatch } = this.props;
+    const ten = 10;
+    let score = ten;
+    const pontos = { hard: 3, medium: 2, easy: 1 };
+    if (selectedAnswer === correctAnswer) {
+      score += (timerCounter * pontos[difficulty]);
+      dispatch(updateScore(score));
+    }
+
     this.setState({ clicked: true });
   };
 
