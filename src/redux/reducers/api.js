@@ -1,13 +1,15 @@
-import { REQUEST_API } from '../actions';
+import { SAVE_QUESTIONS } from '../actions';
 
 const initialState = {
   response: '',
   results: [],
+  index: 0,
 };
 
 const api = (state = initialState, { type, payload }) => {
   switch (type) {
-  case REQUEST_API:
+  case SAVE_QUESTIONS:
+
     return {
       ...state,
       response: payload.response_code,

@@ -2,85 +2,67 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getToken } from '../helpers/localStorage';
-import { requestAPI } from '../redux/actions';
+// import { requestAPI } from '../redux/actions';
 // import { requestTokenAPI } from '../helpers/requestApi';
 // import { requestAPI } from '../redux/actions';
 import Header from '../components/Header';
 
+import Questions from '../components/Questions';
+import { requestAPI } from '../redux/actions';
+
 class Game extends Component {
   state = {
     questionIndex: 0,
+    results: [],
+    answersShuffled: [],
   };
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-
+  async componentDidMount() {
+    const { history, dispatch } = this.props;
     const token = getToken();
-    dispatch(requestAPI(token));
-    // temos o obj com o token
-    // disparar a action thunk com o token
-    // a action thunk vai mandar para o estado global os dados da resposta e se a resposta do token for inválido ou seja, 3 o didupdate entra no if, remove do localStorage o token e redireciona o usuário para a tela de login
-  }
-
-  componentDidUpdate() {
-    const { response, history } = this.props;
-
-    const invalidResponse = 3;
-    if (response === invalidResponse) {
+    console.log(token);
+    await dispatch(requestAPI(token));
+    const { results, response } = this.props;
+    const three = 3;
+    if (response === three) {
       localStorage.removeItem('token');
       history.push('/');
+      return;
     }
+    this.setState({ results }, this.shuffleAnswers);
   }
 
-  shuffleArray = (array) => {
+  shuffleAnswers = () => {
+    const { results, questionIndex } = this.state;
+
+    const answers = [
+      ...results[questionIndex].incorrect_answers,
+      results[questionIndex].correct_answer,
+    ];
+
     const number = 0.5;
-    return array.sort(() => Math.random() - number);
+    const answersShuffled = answers.sort(() => Math.random() - number);
+    this.setState({ answersShuffled });
   };
 
   render() {
-    const { questionIndex } = this.state;
-    const { results } = this.props;
-    console.log(results);
-
-    if (results.length === 0) return <p>Loading...</p>;
-
-    const {
-      category,
-      question,
-      correct_answer: correctAnswer,
-      incorrect_answers: incorrectAnswers,
-    } = results[questionIndex];
-
-    const shuffled = this.shuffleArray([correctAnswer, ...incorrectAnswers]);
-
+    const { questionIndex, answersShuffled, results } = this.state;
     return (
       <div className="game">
         <Header />
-        <h1 data-testid="question-category">{ category }</h1>
-        <h3 data-testid="question-text">{ question }</h3>
-        <div data-testid="answer-options">
-          { shuffled.map((answer, index) => (
-            <button
-              key={ answer }
-              type="button"
-              data-testid={
-                answer === correctAnswer
-                  ? 'correct-answer'
-                  : `wrong-answer-${index}`
-              }
-            >
-              { answer }
-            </button>
-          )) }
-        </div>
+        <Questions
+          results={ results }
+          answersShuffled={ answersShuffled }
+          questionIndex={ questionIndex }
+        />
       </div>
     );
   }
 }
 
 Game.propTypes = {
-  results: PropTypes.shape({
-    length: PropTypes.number,
+  history: PropTypes.shape({
+    push: PropTypes.func,
   }),
 }.isRequired;
 
