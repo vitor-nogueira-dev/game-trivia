@@ -66,7 +66,7 @@ class Game extends Component {
       this.setState(({ timerCounter, clicked }) => {
         if (timerCounter === 0 || clicked) {
           this.stopTimer();
-          return { isDisabled: true };
+          return { isDisabled: true, clicked: true };
         }
         return { timerCounter: timerCounter - 1 };
       });
