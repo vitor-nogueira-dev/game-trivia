@@ -25,3 +25,38 @@ export const renderWithRouterAndRedux = (component, initialState, route = '/') =
 };
 
 export default renderWithRouterAndRedux;
+
+
+// {loading ? <p> Loading...</p>
+//           : (
+//             <div>
+//               <h1
+//                 data-testid="question-category"
+//               >
+//                 {decode(results[questionIndex].category)}
+//               </h1>
+//               <h3
+//                 data-testid="question-text"
+//               >
+//                 {decode(results[questionIndex].question)}
+//               </h3>
+//               <div data-testid="answer-options">
+//                 {shuffled.map((answer, index) => (
+//                   <button
+//                     key={ answer }
+//                     type="button"
+//                     onClick={ () => this.checkAnswer(answer, correctAnswer) }
+//                     className={ answer === correctAnswer ? 'correct' : '' }
+//                     // style={ { borderColor } }
+//                     data-testid={
+//                       answer === correctAnswer
+//                         ? 'correct-answer'
+//                         : `wrong-answer-${index}`
+//                     }
+//                   >
+//                     {answer}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+//           )}
