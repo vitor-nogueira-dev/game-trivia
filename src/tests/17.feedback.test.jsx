@@ -86,4 +86,25 @@ describe("testa a página de feedback", () => {
     const scoreMessage = screen.getByText(/um total de pontos/i)
     expect(within(scoreMessage).getByText('112')).toBeInTheDocument();
   })
+
+  it('É redirecionado para a página de login ao clicar no botão Play Again', () => {
+    const initialState = {
+      player: {
+        name: 'John Doe',
+        assertions: 2,
+        score: 74,
+        gravatarEmail: 'johndoe@test.com',
+      }
+    }
+    const route = '/feedback'
+    const { history } = renderWithRouterAndRedux(<App />, initialState, route );
+
+    const playAgainBtn = screen.getByRole('button', { name: /play again/i });
+    expect(playAgainBtn).toBeInTheDocument();
+
+    userEvent.click(playAgainBtn);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+  })
 })
