@@ -2,8 +2,6 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App';
-import { act } from 'react-dom/test-utils';
-import Login from '../pages/Login';
 import userEvent from '@testing-library/user-event';
 
 describe('Cobertura da tela de login.', () => {
@@ -41,12 +39,8 @@ describe('Cobertura da tela de login.', () => {
     expect(buttonPlay).toBeInTheDocument();
     expect(buttonPlay).toBeEnabled();
     userEvent.click(buttonPlay);
-    // expect(history.location.pathname).toBe('/rgrgf')
-    
     
     await waitFor(() => expect(history.location.pathname).toBe('/game'));
-    // const title = screen.getByRole('heading', { name: /Hello World/i });
-    // expect(title).toBeInTheDocument();
   })
   
   test('Testando rota pra settings', () => {
@@ -57,5 +51,4 @@ describe('Cobertura da tela de login.', () => {
     const title = screen.getByRole('heading', { name: /Settings/i });
     expect(title).toBeInTheDocument();
   })
-  
 });

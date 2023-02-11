@@ -1,4 +1,10 @@
-import { SAVE_EMAIL, SAVE_NAME, UPDATE_SCORE, UPDATE_ASSERTIONS } from '../actions';
+import {
+  SAVE_EMAIL,
+  SAVE_NAME,
+  UPDATE_SCORE,
+  UPDATE_ASSERTIONS,
+  RESTART_SCORE,
+} from '../actions';
 
 const initialState = {
   name: '',
@@ -20,10 +26,14 @@ const player = (state = initialState, { type, payload }) => {
       name: payload,
     };
   case UPDATE_SCORE:
-    console.log(payload);
     return {
       ...state,
       score: state.score + payload,
+    };
+  case RESTART_SCORE:
+    return {
+      ...state,
+      score: payload,
     };
   case UPDATE_ASSERTIONS:
     return {

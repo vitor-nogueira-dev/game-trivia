@@ -3,8 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import PlayAgain from '../components/PlayAgain';
+import { addRanking } from '../services/rankingsService';
 
 class Feedback extends Component {
+  handleClick = () => {
+    const { history, name, email, score } = this.props;
+    addRanking(name, email, score);
+    history.push('/ranking');
+  };
+
   render() {
     const { assertions, score, history } = this.props;
     const minAssertionsNumber = 3;
@@ -37,7 +44,7 @@ class Feedback extends Component {
           <button
             data-testid="btn-ranking"
             type="button"
-            onClick={ () => history.push('/ranking') }
+            onClick={ () => this.handleClick() }
           >
             Ranking
           </button>
@@ -50,6 +57,8 @@ class Feedback extends Component {
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
@@ -58,6 +67,8 @@ Feedback.propTypes = {
 const mapStateToProps = ({ player }) => ({
   assertions: player.assertions,
   score: player.score,
+  email: player.gravatarEmail,
+  name: player.name,
 });
 
 export default connect(mapStateToProps)(Feedback);
