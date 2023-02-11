@@ -43,8 +43,8 @@ describe("testa a página de feedback", () => {
     const initialState = {
       player: {
         name: 'John Doe',
-        assertions: 2,
-        score: 74,
+        assertions: 1,
+        score: 52,
         gravatarEmail: 'johndoe@test.com',
       }
     }
@@ -54,13 +54,13 @@ describe("testa a página de feedback", () => {
     const feedbackText = screen.getByRole('heading', { level: 2, name: /could be better/i });
     expect(feedbackText).toBeInTheDocument();
 
-    const assertions = screen.getByText('2');
-    const assertionsMessage = screen.getByText(/você acertou questões!/i)
+    const assertions = screen.getByText('1');
+    const assertionsMessage = screen.getByText(/você acertou questão!/i)
     expect(assertions).toBeInTheDocument();
     expect(assertionsMessage).toBeInTheDocument();
 
     const scoreMessage = screen.getByText(/um total de pontos/i)
-    expect(within(scoreMessage).getByText('74')).toBeInTheDocument();
+    expect(within(scoreMessage).getByText('52')).toBeInTheDocument();
   })
 
   it('Renderiza corretamente a section de mensagens de feedback | Well done!', () => {
@@ -99,12 +99,33 @@ describe("testa a página de feedback", () => {
     const route = '/feedback'
     const { history } = renderWithRouterAndRedux(<App />, initialState, route );
 
-    const playAgainBtn = screen.getByRole('button', { name: /play again/i });
-    expect(playAgainBtn).toBeInTheDocument();
+    const rankingBtn = screen.getByRole('button', { name: /play again/i });
+    expect(rankingBtn).toBeInTheDocument();
 
-    userEvent.click(playAgainBtn);
+    userEvent.click(rankingBtn);
 
     const { pathname } = history.location;
     expect(pathname).toBe('/');
+  })
+
+  it('É redirecionado para a página de ranking ao clicar no botão ranking', () => {
+    const initialState = {
+      player: {
+        name: 'John Doe',
+        assertions: 2,
+        score: 74,
+        gravatarEmail: 'johndoe@test.com',
+      }
+    }
+    const route = '/feedback'
+    const { history } = renderWithRouterAndRedux(<App />, initialState, route );
+
+    const rankingBtn = screen.getByRole('button', { name: /ranking/i });
+    expect(rankingBtn).toBeInTheDocument();
+
+    userEvent.click(rankingBtn);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/ranking');
   })
 })
