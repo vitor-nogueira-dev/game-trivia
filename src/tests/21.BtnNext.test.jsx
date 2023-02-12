@@ -1,8 +1,8 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Game from "../pages/Game";
-import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import { questionsResponse } from "./mocks";
+import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 
 describe('Testando página Game', () => {
   test('Testando se clicando nas respostas corretas e incorreta ele avança para a próxima pergunta', async () => {
