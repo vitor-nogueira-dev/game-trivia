@@ -35,13 +35,13 @@ class Game extends Component {
       if (responseCode === three) {
         localStorage.removeItem('token');
         history.push('/');
-        return;
+      } else {
+        this.setState({ results }, () => {
+          this.shuffleAnswers();
+          this.startTimer();
+          dispatch(saveQuestions(results));
+        });
       }
-      this.setState({ results }, () => {
-        this.shuffleAnswers();
-        this.startTimer();
-      });
-      dispatch(saveQuestions(results));
     } catch (error) {
       console.warn(error);
     }
@@ -144,6 +144,7 @@ class Game extends Component {
 }
 
 Game.propTypes = {
+  dispatch: PropTypes.func,
   history: PropTypes.shape({
     push: PropTypes.func,
   }),

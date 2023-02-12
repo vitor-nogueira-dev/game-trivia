@@ -28,11 +28,11 @@ class Ranking extends Component {
       <div>
         <div>
           <h1 data-testid="ranking-title">Ranking</h1>
-          { rankings.sort((a, b) => b.score - a.score).map((item, index) => (
+          {rankings.sort((a, b) => b.score - a.score).map((item, index) => (
             <div key={ index }>
               <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${MD5(item.email).toString()}` } alt="" />
-              <p data-testid={ `player-name-${index}` }>{ item.nome }</p>
-              <p data-testid={ `player-score-${index}` }>{ item.score }</p>
+              <p data-testid={ `player-name-${index}` }>{item.nome}</p>
+              <p data-testid={ `player-score-${index}` }>{item.score}</p>
             </div>
           ))}
         </div>
