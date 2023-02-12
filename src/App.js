@@ -10,10 +10,10 @@ export default function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/ranking" component={ Ranking } />
         <Route path="/feedback" component={ Feedback } />
         <Route path="/settings" component={ Settings } />
         <Route path="/game" component={ Game } />
+        <Route path="/ranking" component={ Ranking } />
         <Route exact path="/" component={ Login } />
       </Switch>
     </div>
