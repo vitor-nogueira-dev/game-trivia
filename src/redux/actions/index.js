@@ -6,6 +6,7 @@ export const SAVE_NAME = 'SAVE_NAME';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const UPDATE_ASSERTIONS = 'UPDATE_ASSERTIONS';
 export const RESTART_SCORE = 'RESTART_SCORE';
+export const SAVE_CONFIG = 'SAVE_CONFIG';
 
 export const getToken = async () => {
   const response = await fetch('https://opentdb.com/api_token.php?command=request');
@@ -52,4 +53,9 @@ export const restartScore = (payload) => ({
 
 export const updateAssertions = () => ({
   type: UPDATE_ASSERTIONS,
+});
+
+export const saveConfig = (payload) => ({
+  type: SAVE_CONFIG,
+  payload,
 });

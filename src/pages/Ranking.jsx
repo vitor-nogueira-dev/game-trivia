@@ -23,7 +23,6 @@ class Ranking extends Component {
 
   render() {
     const { rankings } = this.state;
-    console.log(rankings);
     return (
       <div>
         <div>

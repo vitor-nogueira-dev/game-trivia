@@ -5,7 +5,6 @@ import './Questions.css';
 
 class Questions extends Component {
   handleClassName = (selectedAnswer, correctAnswer) => {
-    console.log(selectedAnswer, 'select', correctAnswer, 'correct');
     if (selectedAnswer === correctAnswer) return 'correct';
     return 'wrong';
   };

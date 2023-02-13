@@ -23,12 +23,12 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { dispatch, history } = this.props;
+    const { dispatch, history, categoryId, difficulty, type } = this.props;
     const token = getToken();
-
+    // https://opentdb.com/api.php?amount=5&category=11&difficulty=hard&type=multiple
     try {
       const response = await fetch(
-        `https://opentdb.com/api.php?amount=5&token=${token}`,
+        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
       );
       const { response_code: responseCode, results } = await response.json();
       const three = 3;
@@ -70,8 +70,6 @@ class Game extends Component {
         }
         return { timerCounter: timerCounter - 1 };
       });
-
-      console.log('o timer está rodando');
     }, aSecondInMiliseconds);
   };
 
@@ -151,8 +149,9 @@ Game.propTypes = {
 }.isRequired;
 
 const mapStateToProps = ({ api }) => ({
-  response: api.response,
-  results: api.results,
+  ...api,
+  // response: api.response,
+  // results: api.results,
 });
 
 export default connect(mapStateToProps)(Game);

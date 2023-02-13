@@ -8,3 +8,9 @@ export function addRanking(nome, email, score) {
   ranking.push(jogada);
   localStorage.setItem('ranking', JSON.stringify(ranking));
 }
+
+export async function fetchCategorys() {
+  const response = await fetch('https://opentdb.com/api_category.php');
+  const data = await response.json();
+  return data.trivia_categories;
+}
