@@ -13,7 +13,12 @@ class Settings extends Component {
   };
 
   async componentDidMount() {
-    this.setState({ categorys: await fetchCategorys() });
+    try {
+      const token = await fetchCategorys();
+      this.setState({ categorys: token });
+    } catch (error) {
+      console.warn(error);
+    }
   }
 
   handleChange = ({ target: { name, value } }) => {

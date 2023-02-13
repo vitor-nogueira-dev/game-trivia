@@ -23,14 +23,21 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { dispatch, history, categoryId, difficulty, type } = this.props;
+    const { dispatch, history } = this.props;
     const token = getToken();
     // https://opentdb.com/api.php?amount=5&category=11&difficulty=hard&type=multiple
     try {
-      const response = await fetch(
-        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
-      );
-      const { response_code: responseCode, results } = await response.json();
+      // let responseFilter = '';
+      // if (categoryId || difficulty || type) {
+      //   responseFilter = await fetch(
+      //     `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
+      //   );
+      // }
+      const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
+      const {
+        response_code: responseCode,
+        results,
+      } = await response.json();
       const three = 3;
       if (responseCode === three) {
         localStorage.removeItem('token');
