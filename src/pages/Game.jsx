@@ -24,12 +24,9 @@ class Game extends Component {
     const token = getToken();
     try {
       const response = await fetch(
-        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
+        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`
       );
-      const {
-        response_code: responseCode,
-        results,
-      } = await response.json();
+      const { response_code: responseCode, results } = await response.json();
       const three = 3;
       if (responseCode === three) {
         localStorage.removeItem('token');
@@ -79,7 +76,7 @@ class Game extends Component {
     let score = ten;
     const pontos = { hard: 3, medium: 2, easy: 1 };
     if (selectedAnswer === correctAnswer) {
-      score += (timerCounter * pontos[difficulty]);
+      score += timerCounter * pontos[difficulty];
       dispatch(updateScore(score));
       dispatch(updateAssertions());
     }
@@ -105,21 +102,28 @@ class Game extends Component {
     const { history } = this.props;
     const four = 4;
     if (questionIndex === four) return history.push('/feedback');
-    this.setState({
-      questionIndex: questionIndex + 1,
-      clicked: false,
-      timerCounter: TIMER_TIME,
-      isDisabled: false,
-    }, () => {
-      this.shuffleAnswers();
-      this.startTimer();
-    });
+    this.setState(
+      {
+        questionIndex: questionIndex + 1,
+        clicked: false,
+        timerCounter: TIMER_TIME,
+        isDisabled: false,
+      },
+      () => {
+        this.shuffleAnswers();
+        this.startTimer();
+      }
+    );
   };
 
   render() {
     const {
-      questionIndex, answersShuffled, results,
-      timerCounter, clicked, isDisabled,
+      questionIndex,
+      answersShuffled,
+      results,
+      timerCounter,
+      clicked,
+      isDisabled,
     } = this.state;
 
     return (
