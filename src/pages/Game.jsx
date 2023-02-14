@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getToken } from '../helpers/localStorage';
-// import { requestAPI } from '../redux/actions';
-// import { requestTokenAPI } from '../helpers/requestApi';
-// import { requestAPI } from '../redux/actions';
 import Header from '../components/Header';
 
 import Questions from '../components/Questions';
@@ -23,17 +20,12 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { dispatch, history } = this.props;
+    const { dispatch, history, categoryId, difficulty, type } = this.props;
     const token = getToken();
-    // https://opentdb.com/api.php?amount=5&category=11&difficulty=hard&type=multiple
     try {
-      // let responseFilter = '';
-      // if (categoryId || difficulty || type) {
-      //   responseFilter = await fetch(
-      //     `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
-      //   );
-      // }
-      const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
+      const response = await fetch(
+        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
+      );
       const {
         response_code: responseCode,
         results,
@@ -134,15 +126,15 @@ class Game extends Component {
       <div className="game">
         <Header />
         <Questions
-          results={ results }
-          answersShuffled={ answersShuffled }
-          questionIndex={ questionIndex }
-          clicked={ clicked }
-          handleOptionClick={ this.handleOptionClick }
-          isDisabled={ isDisabled }
-          handleClickNext={ this.handleClickNext }
+          results={results}
+          answersShuffled={answersShuffled}
+          questionIndex={questionIndex}
+          clicked={clicked}
+          handleOptionClick={this.handleOptionClick}
+          isDisabled={isDisabled}
+          handleClickNext={this.handleClickNext}
         />
-        <p>{ `Timer: ${timerCounter}s` }</p>
+        <p>{`Timer: ${timerCounter}s`}</p>
       </div>
     );
   }

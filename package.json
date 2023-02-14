@@ -17,7 +17,8 @@
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "styled-components": "^5.3.6"
   },
   "scripts": {
     "cy": "env CY_CLI=true cypress run",
