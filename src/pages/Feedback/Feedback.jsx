@@ -31,20 +31,28 @@ class Feedback extends Component {
 				</StyledHeaderGroup>
 				<StyledSection>
 					<StyledFeedbackMessage>
-						{assertions >= minAssertionsNumber ? (
-							<h2 data-testid="feedback-text">Well Done!</h2>
-						) : (
-							<h2 data-testid="feedback-text">Could be better...</h2>
-						)}
-						<p>
-							Você acertou{" "}
-							<span data-testid="feedback-total-question">{assertions}</span>{" "}
-							{assertions > 1 ? "questões!" : "questão!"}
-						</p>
-						<p>
-							Um total de{" "}
-							<span data-testid="feedback-total-score">{score}</span> pontos.
-						</p>
+              {assertions >= minAssertionsNumber ? (
+                <div>
+                  <h2 data-testid="feedback-text">Well Done!</h2>
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Clapping%20Hands.png" alt="Clapping Hands" />
+                </div>
+              ) : (
+                <div>
+                  <h2 data-testid="feedback-text">Could be better...</h2>
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Crying%20Face.png" alt="Crying Face" />
+                </div>
+              )}
+						<section>
+              <p>
+                Você acertou{" "}
+                <span data-testid="feedback-total-question">{assertions}</span>{" "}
+                {assertions > 1 ? "questões!" : "questão!"}
+              </p>
+              <p>
+                Um total de{" "}
+                <span data-testid="feedback-total-score">{score}</span> pontos.
+              </p>
+            </section>
 					</StyledFeedbackMessage>
 					<StyledFeedbackButtons>
 						<PlayAgain history={history} />
