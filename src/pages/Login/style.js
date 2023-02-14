@@ -7,8 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   margin: auto;
   gap: 12px;
-  
-  
+
   width: 400px;
   padding: 50px;
 
@@ -27,6 +26,11 @@ export const Container = styled.div`
 
   img {
     width: 240px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 600px;
+    width: 360px;
   }
 `;
 
