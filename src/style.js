@@ -17,8 +17,8 @@ const ContainerBlur = styled.div`
   gap: ${(props) => props.gap};
 
   @media screen and (max-width: 820px) {
-    width: 780px;
-    height: 600px;
+    width: 680px;
+    height: 500px;
   }
 
   @media screen and (max-width: 768px) {
@@ -86,14 +86,6 @@ const ContainerButtons = styled.div`
       width: 135px;
       margin-top: 10px;
     }
-
-    h1 {
-      font-size: 18px;
-    }
-    h3 {
-      font-size: 16px;
-      width: 300px;
-    }
   }
 `;
 
@@ -137,6 +129,17 @@ const BotaoNext = styled.div`
 
 const Container = styled.div`
   margin-top: 30px;
+
+  @media screen and (max-width: 820px) {
+    button {
+      width: 135px;
+      margin-top: 10px;
+    }
+
+    h3 {
+      width: 400px;
+    }
+  }
 
   @media screen and (max-width: 768px) {
     display: flex;
