@@ -27,6 +27,11 @@ export const Container = styled.div`
   img {
     width: 240px;
   }
+
+  @media screen and (max-width: 768px) {
+    height: 600px;
+    width: 360px;
+  }
 `;
 
 export const ContainerButton = styled.div`

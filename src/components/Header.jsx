@@ -15,6 +15,7 @@ class Header extends Component {
         <div className="score-info">
           <p>
             Pontos:
+            {' '}
             <span data-testid="header-score">{score}</span>
           </p>
         </div>

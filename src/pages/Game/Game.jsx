@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getToken } from '../helpers/localStorage';
-import Header from '../components/Header';
+import { getToken } from '../../helpers/localStorage';
+import Header from '../../components/Header';
 
-import Questions from '../components/Questions';
-import { saveQuestions, updateScore, updateAssertions } from '../redux/actions';
+import Questions from '../../components/Questions';
+import { saveQuestions, updateScore, updateAssertions } from '../../redux/actions';
+
+import { ContainerBlur, QuestionsContent } from '../../style';
 
 const TIMER_TIME = 30;
+const INITIAL_WIDTH = 100;
 
 class Game extends Component {
   state = {
@@ -116,6 +119,12 @@ class Game extends Component {
     );
   };
 
+  calcWidth = () => {
+    const { timerCounter } = this.state;
+    const percent = (INITIAL_WIDTH * timerCounter) / TIMER_TIME;
+    return { width: `${percent}%` };
+  };
+
   render() {
     const {
       questionIndex,
@@ -127,19 +136,32 @@ class Game extends Component {
     } = this.state;
 
     return (
-      <div className="game">
-        <Header />
-        <Questions
-          results={results}
-          answersShuffled={answersShuffled}
-          questionIndex={questionIndex}
-          clicked={clicked}
-          handleOptionClick={this.handleOptionClick}
-          isDisabled={isDisabled}
-          handleClickNext={this.handleClickNext}
-        />
-        <p>{`Timer: ${timerCounter}s`}</p>
-      </div>
+      <ContainerBlur
+        padding={`${200}px`}
+        display="flex"
+        justify="center"
+        alignItems="center"
+        gap={`${30}px`}
+        height="440px"
+
+      >
+        {/* <Header /> */}
+        <QuestionsContent>
+          <div className='container__timer'>
+            <p>{`${timerCounter}s`}</p>
+            <div style={this.calcWidth()} className="timer" />
+          </div>
+          <Questions
+            results={results}
+            answersShuffled={answersShuffled}
+            questionIndex={questionIndex}
+            clicked={clicked}
+            handleOptionClick={this.handleOptionClick}
+            isDisabled={isDisabled}
+            handleClickNext={this.handleClickNext}
+          />
+        </QuestionsContent>
+      </ContainerBlur>
     );
   }
 }
