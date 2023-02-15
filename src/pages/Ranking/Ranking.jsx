@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MD5 } from 'crypto-js';
-import { getRanking } from '../services/rankingsService';
-import { restartScore } from '../redux/actions';
+import { getRanking } from '../../services/rankingsService';
+import { restartScore } from '../../redux/actions';
+import { ContainerBlur, StyledButtonsRanking, StyledContentRaking,StyledContentOfPlayers, StyledImagens } from "./style.js";
 
 class Ranking extends Component {
   state = {
@@ -24,17 +25,21 @@ class Ranking extends Component {
   render() {
     const { rankings } = this.state;
     return (
-      <div>
-        <div>
+      <ContainerBlur>
+        <StyledContentRaking>
           <h1 data-testid="ranking-title">Ranking</h1>
           {rankings.sort((a, b) => b.score - a.score).map((item, index) => (
-            <div key={ index }>
-              <img data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${MD5(item.email).toString()}` } alt="" />
-              <p data-testid={ `player-name-${index}` }>{item.nome}</p>
-              <p data-testid={ `player-score-${index}` }>{item.score}</p>
-            </div>
+            <StyledContentOfPlayers key={ index }>
+              <StyledImagens>
+              <img className='images' data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${MD5(item.email).toString()}` } alt="" />
+              <img className= 'star'src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/tarikul-islam-anik/main/assets/images/Star.png" alt="Star" />
+              </StyledImagens>
+              <p className='inputName'data-testid={ `player-name-${index}` }>{item.nome}</p>
+              <p className='inputScore'data-testid={ `player-score-${index}` }>Score: {item.score}</p>
+            </StyledContentOfPlayers>
           ))}
-        </div>
+        </StyledContentRaking>
+        <StyledButtonsRanking>
         <button
           type="button"
           data-testid="btn-go-home"
@@ -42,7 +47,8 @@ class Ranking extends Component {
         >
           Início
         </button>
-      </div>
+        </StyledButtonsRanking>
+      </ContainerBlur>
     );
   }
 }
