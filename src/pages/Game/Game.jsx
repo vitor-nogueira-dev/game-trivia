@@ -143,10 +143,9 @@ class Game extends Component {
         alignItems="center"
         gap={`${30}px`}
         height="440px"
-
       >
-        <Header />
         <QuestionsContent>
+        <Header />
           <div className='container__timer'>
             <p>{`${timerCounter}s`}</p>
             <div style={this.calcWidth()} className="timer" />
