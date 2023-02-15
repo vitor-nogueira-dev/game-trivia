@@ -25,11 +25,9 @@ export const ContainerBlur = styled.div`
 		width: 350px;
 		height: 610px;
 	}
-
-
 `;
 
-//Conteudo dos rankings dos Players
+//Conteudo do h1
 export const StyledContentRaking = styled.div` 
 	display: flex;
 	flex-direction: column;
@@ -45,7 +43,7 @@ export const StyledContentRaking = styled.div`
         align-items: center;
         justify-content: center;
         margin-bottom: 40px;
-        font-size: 40px;
+        font-size: 50px;
     }
 
     @media screen and (max-width: 768px) {
@@ -71,7 +69,7 @@ export const StyledContentOfPlayers = styled.div`
         border-radius:5px;
         padding:10px;
         color:white;
-        margin-top: 10px;
+        margin-top: 3px;
         height: 100%;
         font-size: 17px;
     }
@@ -81,21 +79,24 @@ export const StyledContentOfPlayers = styled.div`
         border-radius:5px;
         padding: 10px;
         color: white;
-        margin-left: 20px;
         margin-right: 10px;
-        margin-top: 10px;
+        margin-top: 3px;
         font-size: 17px;
+    }
+    
+    .star{
+        width: 50px;
+        
     }
 
     @media screen and (max-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-    gap: 15px;
-    margin-top: 70px;
-    width: 450px;
-    margin-right: 100px;
+        padding: 0;
+        width: 370px;
+        margin-right: 25px;
+        
+    .star{
+        display: none;
+    }
 	}
 `;
 
@@ -106,20 +107,19 @@ export const StyledImagens = styled.div`
     justify-content: center;
     
 	.images{
-        width:75px;
+        width: 50px;
         border-radius: 50%;
         margin-left:10px;
         box-shadow: 0 0px 5px 3px var(--color-azulSerenite);
     }
 
-    .star{
-        width: 75px;
-    }
-
     @media screen and (max-width: 768px) {
     display: flex;
-    width: 1000px;
-    padding: 55px;
+    width: 50px;
+    /* padding: 55px; */
+    .images{
+        display: none;
+    }
 	}
 `;
 
@@ -138,7 +138,7 @@ export const StyledButtonsRanking = styled.div`
 		font-size: 1rem;
 		border: none;
 		border-radius: 0.2rem;
-		padding: 0.6rem 0.7rem;
+		padding: 10px;
 		background-color: #2ca478;
 	}
     button:hover {

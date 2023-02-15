@@ -32,10 +32,11 @@ class Ranking extends Component {
             <StyledContentOfPlayers key={ index }>
               <StyledImagens>
               <img className='images' data-testid="header-profile-picture" src={ `https://www.gravatar.com/avatar/${MD5(item.email).toString()}` } alt="" />
-              <img className= 'star'src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/tarikul-islam-anik/main/assets/images/Star.png" alt="Star" />
+              
               </StyledImagens>
               <p className='inputName'data-testid={ `player-name-${index}` }>{item.nome}</p>
               <p className='inputScore'data-testid={ `player-score-${index}` }>Score: {item.score}</p>
+              <img className= 'star'src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/tarikul-islam-anik/main/assets/images/Star.png" alt="Star" />
             </StyledContentOfPlayers>
           ))}
         </StyledContentRaking>
