@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import sanitizeHtml from 'sanitize-html';
 import './Questions.css';
 import { ContainerButtons, BotaoNext, Container } from '../style';
 
@@ -12,28 +13,40 @@ class Questions extends Component {
 
   render() {
     const {
-      questionIndex, answersShuffled, results,
-      clicked, handleOptionClick, isDisabled,
+      questionIndex,
+      answersShuffled,
+      results,
+      clicked,
+      handleOptionClick,
+      isDisabled,
       handleClickNext,
     } = this.props;
 
-    if (results.length === 0 || answersShuffled.length === 0) return <p>Loading...</p>;
+    if (results.length === 0 || answersShuffled.length === 0)
+      return <p>Loading...</p>;
 
     const buttonNext = (
       <button
         type="button"
         onClick={handleClickNext}
         data-testid="btn-next"
-        className='btn-next'
+        className="btn-next"
       >
         Next
       </button>
     );
+
+    const question = sanitizeHtml(results[questionIndex].question);
     return (
       <div>
         <Container>
-          <h1 data-testid="question-category">{results[questionIndex].category}</h1>
-          <h3 data-testid="question-text">{results[questionIndex].question}</h3>
+          <h1 data-testid="question-category">
+            {results[questionIndex].category}
+          </h1>
+          <h3
+            data-testid="question-text"
+            dangerouslySetInnerHTML={{ __html: question }}
+          />
           <ContainerButtons data-testid="answer-options">
             {answersShuffled.map((answer, index) => (
               <button
@@ -45,17 +58,23 @@ class Questions extends Component {
                     ? 'correct-answer'
                     : `wrong-answer-${index}`
                 }
-                className={clicked
-                  ? this.handleClassName(answer, results[questionIndex].correct_answer)
-                  : ''}
-                onClick={() => handleOptionClick(
-                  answer,
-                  results[questionIndex].correct_answer,
-                  results[questionIndex].difficulty,
-                )}
-              >
-                {answer}
-              </button>
+                className={
+                  clicked
+                    ? this.handleClassName(
+                        answer,
+                        results[questionIndex].correct_answer
+                      )
+                    : ''
+                }
+                onClick={() =>
+                  handleOptionClick(
+                    answer,
+                    results[questionIndex].correct_answer,
+                    results[questionIndex].difficulty
+                  )
+                }
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(answer) }}
+              />
             ))}
           </ContainerButtons>
           <BotaoNext>{clicked && buttonNext}</BotaoNext>
