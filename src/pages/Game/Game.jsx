@@ -145,8 +145,8 @@ class Game extends Component {
         height="440px"
 
       >
-        <Header />
         <QuestionsContent>
+        <Header />
           <div className='container__timer'>
             <p>{`${timerCounter}s`}</p>
             <div style={this.calcWidth()} className="timer" />

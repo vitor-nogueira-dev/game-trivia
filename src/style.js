@@ -15,6 +15,7 @@ const ContainerBlur = styled.div`
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.alignItems};
   gap: ${(props) => props.gap};
+  flex-direction: column;
 
   @media screen and (max-width: 820px) {
     width: 680px;
@@ -44,6 +45,7 @@ const QuestionsContent = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 5px;
 
   padding: 20px;
 
@@ -56,6 +58,9 @@ const QuestionsContent = styled.div`
     p {
       font-size: 25px;
     }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0px;
   }
 `;
 
@@ -82,9 +87,15 @@ const ContainerButtons = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-wrap: wrap;
+    flex-direction: column;
+    height: 170px;
+    width: 300px;
+
     button {
       width: 135px;
       margin-top: 10px;
+
+      flex-grow: 1;
     }
   }
 `;
@@ -123,6 +134,7 @@ const BotaoNext = styled.div`
 
     button {
       width: 100px;
+      margin-bottom: 30px;
     }
   }
 `;
@@ -146,7 +158,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 10px;
     margin-top: 30px;
 
     h1 {
