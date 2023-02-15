@@ -143,7 +143,6 @@ class Game extends Component {
         alignItems="center"
         gap={`${30}px`}
         height="440px"
-
       >
         <QuestionsContent>
         <Header />
