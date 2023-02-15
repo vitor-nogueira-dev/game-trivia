@@ -1,9 +1,30 @@
 .correct {
-  background-color: rgb(6, 240, 15);
-  border: 3px solid rgb(6, 240, 15);
+  background-color: var(--color-green);
+
+  color: black;
+  font-weight: 600;
 }
 
 .wrong {
-  background-color: red;
-  border: 3px solid red;
+  background-color: var(--color-pink);
+  filter: brightness(0.8);
+
+  color: white;
+  font-weight: 600;
+}
+
+.timer {
+  width: 100%;
+  background-color: var(--color-azulSerenite);
+  height: 10px;
+  border-radius: 1rem;
+  transition: width 1s linear;
+}
+
+.container__timer {
+  width: 240px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

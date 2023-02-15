@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getToken } from '../helpers/localStorage';
-import Header from '../components/Header';
+import { getToken } from '../../helpers/localStorage';
+import Header from '../../components/Header';
 
-import Questions from '../components/Questions';
-import { saveQuestions, updateScore, updateAssertions } from '../redux/actions';
+import Questions from '../../components/Questions';
+import { saveQuestions, updateScore, updateAssertions } from '../../redux/actions';
+
+import { ContainerBlur, QuestionsContent } from '../../style';
 
 const TIMER_TIME = 30;
+const INITIAL_WIDTH = 100;
 
 class Game extends Component {
   state = {
@@ -24,12 +27,9 @@ class Game extends Component {
     const token = getToken();
     try {
       const response = await fetch(
-        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`,
+        `https://opentdb.com/api.php?amount=5&token=${token}&category=${categoryId}&difficulty=${difficulty}&type=${type}`
       );
-      const {
-        response_code: responseCode,
-        results,
-      } = await response.json();
+      const { response_code: responseCode, results } = await response.json();
       const three = 3;
       if (responseCode === three) {
         localStorage.removeItem('token');
@@ -79,7 +79,7 @@ class Game extends Component {
     let score = ten;
     const pontos = { hard: 3, medium: 2, easy: 1 };
     if (selectedAnswer === correctAnswer) {
-      score += (timerCounter * pontos[difficulty]);
+      score += timerCounter * pontos[difficulty];
       dispatch(updateScore(score));
       dispatch(updateAssertions());
     }
@@ -105,37 +105,63 @@ class Game extends Component {
     const { history } = this.props;
     const four = 4;
     if (questionIndex === four) return history.push('/feedback');
-    this.setState({
-      questionIndex: questionIndex + 1,
-      clicked: false,
-      timerCounter: TIMER_TIME,
-      isDisabled: false,
-    }, () => {
-      this.shuffleAnswers();
-      this.startTimer();
-    });
+    this.setState(
+      {
+        questionIndex: questionIndex + 1,
+        clicked: false,
+        timerCounter: TIMER_TIME,
+        isDisabled: false,
+      },
+      () => {
+        this.shuffleAnswers();
+        this.startTimer();
+      }
+    );
+  };
+
+  calcWidth = () => {
+    const { timerCounter } = this.state;
+    const percent = (INITIAL_WIDTH * timerCounter) / TIMER_TIME;
+    return { width: `${percent}%` };
   };
 
   render() {
     const {
-      questionIndex, answersShuffled, results,
-      timerCounter, clicked, isDisabled,
+      questionIndex,
+      answersShuffled,
+      results,
+      timerCounter,
+      clicked,
+      isDisabled,
     } = this.state;
 
     return (
-      <div className="game">
+      <ContainerBlur
+        padding={`${200}px`}
+        display="flex"
+        justify="center"
+        alignItems="center"
+        gap={`${30}px`}
+        height="440px"
+
+      >
         <Header />
-        <Questions
-          results={results}
-          answersShuffled={answersShuffled}
-          questionIndex={questionIndex}
-          clicked={clicked}
-          handleOptionClick={this.handleOptionClick}
-          isDisabled={isDisabled}
-          handleClickNext={this.handleClickNext}
-        />
-        <p>{`Timer: ${timerCounter}s`}</p>
-      </div>
+        <QuestionsContent>
+          <div className='container__timer'>
+            <p>{`${timerCounter}s`}</p>
+            <div style={this.calcWidth()} className="timer" />
+          </div>
+          <Questions
+            results={results}
+            answersShuffled={answersShuffled}
+            questionIndex={questionIndex}
+            clicked={clicked}
+            handleOptionClick={this.handleOptionClick}
+            isDisabled={isDisabled}
+            handleClickNext={this.handleClickNext}
+          />
+        </QuestionsContent>
+      </ContainerBlur>
     );
   }
 }

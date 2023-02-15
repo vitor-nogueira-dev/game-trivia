@@ -20,11 +20,15 @@ export const StyledHeader = styled.header`
     margin-top: 20px;
 	}
 
+	.player-name {
+		font-size: 1rem;
+	}
+
 	.player-info {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 1rem;
 	}
 
 	@media screen and (min-width: 1279px) {
@@ -45,11 +49,12 @@ class Header extends Component {
 						src={`https://www.gravatar.com/avatar/${MD5(email).toString()}`}
 						alt=""
 					/>
-					<span data-testid="header-player-name">{name}</span>
+					<span className="player-name">{name}</span>
 				</div>
 				<div className="score-info">
 					<p>
 						Pontos:
+						{' '}
 						<span data-testid="header-score">{score}</span>
 					</p>
 				</div>

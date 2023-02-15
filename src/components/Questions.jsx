@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Questions.css';
+import { ContainerButtons, BotaoNext, Container } from '../style';
 
 class Questions extends Component {
   handleClassName = (selectedAnswer, correctAnswer) => {
@@ -21,43 +22,44 @@ class Questions extends Component {
     const buttonNext = (
       <button
         type="button"
-        onClick={ handleClickNext }
+        onClick={handleClickNext}
         data-testid="btn-next"
+        className='btn-next'
       >
         Next
       </button>
     );
     return (
       <div>
-        <div>
+        <Container>
           <h1 data-testid="question-category">{results[questionIndex].category}</h1>
           <h3 data-testid="question-text">{results[questionIndex].question}</h3>
-          <div data-testid="answer-options">
+          <ContainerButtons data-testid="answer-options">
             {answersShuffled.map((answer, index) => (
               <button
-                key={ answer }
+                key={answer}
                 type="button"
-                disabled={ isDisabled }
+                disabled={isDisabled}
                 data-testid={
                   answer === results[questionIndex].correct_answer
                     ? 'correct-answer'
                     : `wrong-answer-${index}`
                 }
-                className={ clicked
+                className={clicked
                   ? this.handleClassName(answer, results[questionIndex].correct_answer)
-                  : '' }
-                onClick={ () => handleOptionClick(
+                  : ''}
+                onClick={() => handleOptionClick(
                   answer,
                   results[questionIndex].correct_answer,
                   results[questionIndex].difficulty,
-                ) }
+                )}
               >
                 {answer}
               </button>
             ))}
-          </div>
-          {clicked && buttonNext}
-        </div>
+          </ContainerButtons>
+          <BotaoNext>{clicked && buttonNext}</BotaoNext>
+        </Container>
       </div>
     );
   }

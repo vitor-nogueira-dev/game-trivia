@@ -33,10 +33,11 @@ export const StyledHeaderGroup = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	padding-top: 10px;
-	gap: 2rem;
+	gap: 1rem;
 
 	.logo {
 		width: 8rem;
+		margin-top: 15px;
 	}
 
 	@media screen and (min-width: 1280px) {
@@ -47,6 +48,7 @@ export const StyledHeaderGroup = styled.div`
 		padding-bottom: 40px;
 		align-items: center;
 		.logo {
+			height: 8rem;
 			width: 8rem;
 		}
 	}
@@ -59,6 +61,7 @@ export const StyledHeaderGroup = styled.div`
 		padding-bottom: 40px;
 		align-items: center;
 		.logo {
+			height: 8rem;
 			width: 8rem;
 		}
 	}
@@ -88,7 +91,7 @@ export const StyledFeedbackMessage = styled.div`
 	border: 1px solid rgba(255, 255, 255, 0.18);
 
 	h2 {
-		font-size: 2rem;
+		font-size: 1.5rem;
 		font-weight: 700;
 	}
 
