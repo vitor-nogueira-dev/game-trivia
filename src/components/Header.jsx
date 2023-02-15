@@ -10,20 +10,27 @@ export const StyledHeader = styled.header`
 	font-weight: 700;
 	display: flex;
 	flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
+	align-items: center;
+	gap: 0.2rem;
 
 	img {
-		width: 5rem;
-		border-radius: 999px;
-    box-shadow: 0 0px 5px 3px var(--color-azulSerenite);
+		width: 4rem;
+    border-radius: 999px;
+		box-shadow: 0 0px 5px 3px var(--color-azulSerenite);
+    margin-top: 20px;
 	}
 
 	.player-info {
 		display: flex;
 		flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	@media screen and (min-width: 1279px) {
+		img {
+			width: 5rem;
+		}
 	}
 `;
 

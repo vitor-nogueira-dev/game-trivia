@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const ContainerBlur = styled.div`
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
-	gap: 5rem;
+	gap: 2rem;
+	width: 350px;
+	height: 600px;
+	padding-top: 15px;
 
 	background: rgba(255, 255, 255, 0.1);
 	box-shadow: 0 0px 32px 0 var(--color-pink);
@@ -13,17 +16,51 @@ export const ContainerBlur = styled.div`
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.18);
 
-	width: 600px;
-	height: 400px;
+	@media screen and (min-width: 768px) {
+		flex-direction: row;
+		justify-content: center;
+		padding-top: 20px;
+		gap: 5rem;
+
+		width: 600px;
+		height: 400px;
+	}
+
 `;
 
 export const StyledHeaderGroup = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: center;
+	padding-top: 10px;
 	gap: 2rem;
 
-	img {
-		width: 6.75rem;
+	.logo {
+		width: 8rem;
+	}
+
+	@media screen and (min-width: 1280px) {
+		display: flex;
+		gap: 1rem;
+		flex-direction: column;
+		justify-content: unset;
+		padding-bottom: 40px;
+		align-items: center;
+		.logo {
+			width: 8rem;
+		}
+	}
+
+	@media screen and (min-width: 768px) and (max-width: 1279px) {
+		display: flex;
+		gap: 1rem;
+		flex-direction: column;
+		justify-content: unset;
+		padding-bottom: 40px;
+		align-items: center;
+		.logo {
+			width: 8rem;
+		}
 	}
 `;
 
@@ -58,6 +95,7 @@ export const StyledFeedbackMessage = styled.div`
 	section {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: 0.5rem;
 	}
 
@@ -65,7 +103,7 @@ export const StyledFeedbackMessage = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.7rem;
 
 		img {
 			width: 3rem;
@@ -95,5 +133,15 @@ export const StyledFeedbackButtons = styled.div`
 		cursor: pointer;
 		transform: scale(1.1);
 		transition: 200ms;
+	}
+
+	@media screen and (max-width: 767px) {
+		width: 91%;
+		margin-top: 10px;
+
+		button {
+			height: 60px;
+			font-size: 1.4rem;
+		}
 	}
 `;

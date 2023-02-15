@@ -26,7 +26,7 @@ class Feedback extends Component {
 		return (
 			<ContainerBlur>
 				<StyledHeaderGroup>
-					<img src={logoTrivia} alt="trivia-game-logo" />
+					<img className="logo" src={logoTrivia} alt="trivia-game-logo" />
 					<Header />
 				</StyledHeaderGroup>
 				<StyledSection>
