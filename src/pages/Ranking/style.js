@@ -8,7 +8,7 @@ export const ContainerBlur = styled.div`
     justify-content: center;
 	gap: 12px;
 	width: 650px;
-	padding: 60px;
+	padding: 30px;
 
 	background: rgba(255, 255, 255, 0.1);
 	box-shadow: 0 0px 32px 0 var(--color-pink);
@@ -20,10 +20,10 @@ export const ContainerBlur = styled.div`
     @media screen and (max-width: 768px) {
 		justify-content: center;
 		padding-top: 20px;
-		gap: 5rem;
+		gap: 20px;
 
 		width: 350px;
-		height: 610px;
+		height: 680px;
 	}
 `;
 
