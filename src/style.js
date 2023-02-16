@@ -37,8 +37,9 @@ const ContainerBlur = styled.div`
 
 const QuestionsContent = styled.div`
   color: white;
-
-  width: 700px;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
   height: 200px;
 
   display: flex;
@@ -47,7 +48,6 @@ const QuestionsContent = styled.div`
   flex-direction: column;
   gap: 5px;
 
-  padding: 20px;
 
   p {
     font-size: 22px;
@@ -70,11 +70,11 @@ const ContainerButtons = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2px;
+  width: 100%;
 
   button {
     cursor: pointer;
     border: none;
-
     border-radius: 5px;
     margin: 5px;
     margin-top: 30px;
@@ -102,7 +102,9 @@ const ContainerButtons = styled.div`
 
 const BotaoNext = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  width: 100%;
+  
 
   button {
     cursor: pointer;
@@ -113,7 +115,6 @@ const BotaoNext = styled.div`
     padding: 12px 3px;
     box-sizing: border-box;
     width: 100%;
-
     height: 50px;
 
     background-color: var(--color-azulSerenite);
@@ -129,6 +130,13 @@ const BotaoNext = styled.div`
     box-shadow: 0 0 5px #03e9f4, 0 0 10px #03e9f4;
   }
 
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     justify-content: center;
 
@@ -141,6 +149,10 @@ const BotaoNext = styled.div`
 
 const Container = styled.div`
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 
   @media screen and (max-width: 820px) {
     button {
@@ -149,7 +161,7 @@ const Container = styled.div`
     }
 
     h3 {
-      width: 400px;
+      width: 550px;
     }
   }
 
