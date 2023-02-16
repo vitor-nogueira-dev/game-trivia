@@ -137,12 +137,12 @@ class Game extends Component {
 
     return (
       <ContainerBlur
-        padding={`${200}px`}
+        padding={'200px'}
         display="flex"
         justify="center"
         alignItems="center"
-        gap={`${30}px`}
-        height="440px"
+        gap={'30px'}
+        height="520px"
       >
         <QuestionsContent>
         <Header />
