@@ -163,6 +163,8 @@ const Container = styled.div`
 
     h1 {
       font-size: large;
+      width: 300px;
+      text-align: center;
     }
     h3 {
       font-size: medium;
