@@ -34,6 +34,7 @@ const player = (state = initialState, { type, payload }) => {
     return {
       ...state,
       score: payload,
+      assertions: payload,
     };
   case UPDATE_ASSERTIONS:
     return {

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Header from "../../components/Header";
-import PlayAgain from "../../components/PlayAgain";
+import { restartScore } from '../../redux/actions';
 import { addRanking } from "../../services/rankingsService";
 import logoTrivia from "../../assets/logoTrivia.png";
 import {
@@ -14,14 +14,20 @@ import {
 } from "./style.js";
 
 class Feedback extends Component {
-	handleClick = () => {
-		const { history, name, email, score } = this.props;
-		addRanking(name, email, score);
-		history.push("/ranking");
-	};
+	handleRankingClick = () => {
+    const { history, name, email, score } = this.props;
+    addRanking(name, email, score);
+    history.push('/ranking');
+  };
+
+	handlePlayAgain = () => {
+    const { dispatch, history } = this.props;
+    dispatch(restartScore(0));
+    history.push('/');
+  }
 
 	render() {
-		const { assertions, score, history } = this.props;
+		const { assertions, score } = this.props;
 		const minAssertionsNumber = 3;
 		return (
 			<ContainerBlur>
@@ -55,14 +61,20 @@ class Feedback extends Component {
             </section>
 					</StyledFeedbackMessage>
 					<StyledFeedbackButtons>
-						<PlayAgain history={history} />
-						<button
-							data-testid="btn-ranking"
-							type="button"
-							onClick={() => this.handleClick()}
-						>
-							Ranking
-						</button>
+					<button
+              data-testid="btn-play-again"
+              type="button"
+              onClick={() => this.handlePlayAgain()}
+            >
+              Play Again
+            </button>
+            <button
+              data-testid="btn-ranking"
+              type="button"
+              onClick={() => this.handleRankingClick()}
+            >
+              Ranking
+            </button>
 					</StyledFeedbackButtons>
 				</StyledSection>
 			</ContainerBlur>

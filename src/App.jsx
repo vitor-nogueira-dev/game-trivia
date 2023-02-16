@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Settings from './pages/Settings/Settings';
@@ -8,6 +8,9 @@ import Ranking from './pages/Ranking/Ranking';
 import './App.css';
 
 export default function App() {
+  useEffect(() => {
+    document.title = 'Trivia Game'
+  }, [])
   return (
     <div className="App">
       <Switch>
