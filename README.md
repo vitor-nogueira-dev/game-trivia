@@ -2,6 +2,7 @@
 
 ![alt text](/project.png)
 ---
+
 Acesse aqui [Trivia Game](https://game-trivia-grupo-28.netlify.app/) ✅
 
 ---
