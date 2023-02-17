@@ -31,12 +31,10 @@ Acesse aqui [Trivia Game](https://game-trivia-grupo-28.netlify.app/) ✅
 - Conexão do Redux aos componentes React;
 - Criação de actions assíncronas usando Redux;
 - Requisições e consumo de dados de uma API com Redux Thunk.
+- Manipulação localStorage
 
 ---
 ### 💡 Conhecimentos extras aplicados:
 
 - Estilização com [```Styled Components```](https://styled-components.com/)
----
-
-#### 🔗 Linkedin [@vitornogueira](https://www.linkedin.com/in/vitor-noqueira-913a9284/) ✅
 ---
